@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="styles/layout.css" media="screen"/>
+</head>
+<body>
+    <h1>Sanpshots</h1>
+    <ul>
+        <li>
+            <a href="images/t-1.jpg" onclick="showPic(this); return false;" title="A handsome man smiling in front of the sea">Picture1</a>
+        </li>
+        <li>
+            <a href="images/t-2.jpg" onclick="showPic(this); return false;" title="A sweet woman smiling at the camera">Picture2</a>
+        </li>
+        <li>
+            <a href="images/t-3.jpg" onclick="showPic(this); return false;" title="A blond woman looking at somewhere">Picture3</a>
+        </li>
+        <li>
+            <a href="images/t-4.jpg" onclick="showPic(this); return false;" title="A beautiful woman with a black hat">Picture4</a>
+        </li>
+        <li>
+            <a href="images/t-5.jpg" onclick="showPic(this); return false;" title="A young little fat boy">Picture5</a>
+        </li>
+        <li>
+            <a href="images/t-6.jpg" onclick="showPic(this); return false;" title="A hot man with sexy beard">Picture6</a>
+        </li>
+    </ul>
+    <img id="placeholder" src="images/v3.jpg" alt="my image gallery" />
+    <p id="description">Choose an image.</p>
+    <script type="text/javascript" src="scripts/showPic.js"></script>
+</body>
+</html>
