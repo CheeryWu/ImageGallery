@@ -26,3 +26,12 @@ img{
     display:block;
     clear: both;
 }
+#imageGallery {
+    list-style: none;
+}
+#imageGallery li{
+    list-style: none;
+}
+#imageGallery li a img {
+    border: 0;
+}
