@@ -13,11 +13,9 @@
   addLoadEvent(firstFunction);
   addLoadEvent(secondFunction);
  */
-
-// window.onload = prepareGallery;
 function addLoadEvent(func) {
   var oldonload = window.onload;
-  if (typeof window.onload != 'funciton') {
+  if (typeof window.onload != 'function') {
     window.onload = func;
   } else {
     window.onload = function() {
@@ -26,7 +24,43 @@ function addLoadEvent(func) {
     }
   }
 }
-addLoadEvent(prepareGallery);
+function insertAfter(newElement, targetElement) {
+  // 把目标元素的parentNode属性值保存在parent中
+  var parent = targetElement.parentNode;
+  // 检查目标元素是不是parent的最后一个子元素
+  if (parent.lastChild == targetElement) {
+    // 如果是，就用appendChild方法将新元素追加到parent元素上
+    parent.appendChild(newElement);
+  } else {
+    // 如果不是，就把新元素添加到目标元素与下一个兄弟元素之间
+    parent.insertBefore(newElement, targetElement.nextSibling);
+  }
+}
+function preparePlaceholder() {
+  // 测试浏览器是否支持函数中的DOM方法
+  if (!document.createElement) return false;
+  if (!document.createTextNode) return false;
+  if (!document.getElementById) return false;
+  if (!document.getElementById("imageGallery")) return false;
+
+  var placeholder = document.createElement("img");
+  placeholder.setAttribute("id", "placeholder");
+  placeholder.setAttribute("src","images/v1.jpg");
+  placeholder.setAttribute("alt","My image gallery");
+
+  var description = document.createElement("p");
+  description.setAttribute("id", "description");
+  var desctext = document.createTextNode("Choose an image");
+  description.appendChild(desctext);
+
+  // document.getElementsByTagName("body")[0].appendChild(placeholder);
+  // document.getElementsByTagName("body")[0].appendChild(description);
+  var gallery = document.getElementById("imageGallery");
+  // gallery.parentNode.insertBefore(placeholder, gallery);
+  // gallery.parentNode.insertBefore(description, gallery);
+  insertAfter(placeholder, gallery);
+  insertAfter(description, placeholder);
+}
 function prepareGallery() {
   /*  step1:检查点  */
   if (!document.getElementsByTagName) return false;
@@ -42,7 +76,7 @@ function prepareGallery() {
     links[i].onclick = function () {
       return showPic(this)? false : true;
     }
-    // links[i].onkeypress = links[i].onclick;
+    links[i].onkeypress = links[i].onclick;
   }
 }
 function showPic(whichpic) {
@@ -64,3 +98,5 @@ function showPic(whichpic) {
   }
   return true;
 }
+addLoadEvent(preparePlaceholder);
+addLoadEvent(prepareGallery);
